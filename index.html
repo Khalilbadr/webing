@@ -1,136 +1,88 @@
 <!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>نموذج عن التعليم الإلكتروني</title>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>خليل الوحية</title>
 <style>
-        body {
-            font-family: sans-serif;
-            direction: rtl;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        input[type="checkbox"] {
-            margin-left: 10px;
-        }
-        button {
-            background-color: #5cb85c;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #4cae4c;
-        }
-        #thankYouMessage {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #dff0d8;
-            color: #3c763d;
-            border: 1px solid #d6e9c6;
-            border-radius: 4px;
-            text-align: center;
-            display: none; /* Hidden by default */
-        }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #fdf5e6;
+      color: #333;
+    }
+    .header {
+      background-color: #1f2d4d;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      clip-path: ellipse(100% 70% at 50% 0%);
+    }
+    .header h1 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+    .header p {
+      font-size: 20px;
+      color: #ffa726;
+    }
+    .content {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .content h2 {
+      margin-bottom: 20px;
+      color: #e65100;
+    }
+    .content ul {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+      line-height: 2;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #888;
+    }
+    .btn {
+      background-color: #ffa726;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      border-radius: 25px;
+ chatgpt: cursor: pointer;
+      margin-top: 20px;
+    }
+    .btn:hover {
+      background-color: #fb8c00;
+    }
 </style>
-</head>
-<body>
-  <div class="container">
-    <h1>استبيان حول التعليم الإلكتروني</h1>
-    <form id="elearningForm">
-      <!-- سيتم إضافة حقول النموذج هنا -->
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement1" value="1"> التعليم الإلكتروني يوفر مرونة في الوقت والمكان.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement2" value="1"> يتيح التعليم الإلكتروني الوصول إلى مصادر تعلم متنوعة.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement3" value="1"> يتطلب التعليم الإلكتروني مهارات تقنية أساسية من المتعلم.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement4" value="1"> يعزز التعليم الإلكتروني التعلم الذاتي وتحمل المسؤولية.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement5" value="1"> قد يفتقر التعليم الإلكتروني إلى التفاعل المباشر بين المعلم والمتعلم.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement6" value="1"> يمكن للتعليم الإلكتروني أن يكون أقل تكلفة من التعليم التقليدي.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement7" value="1"> يساعد التعليم الإلكتروني على تطوير المهارات الرقمية.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement8" value="1"> يحتاج التعليم الإلكتروني إلى بنية تحتية تقنية قوية.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement9" value="1"> يوفر التعليم الإلكتروني فرصًا للتعلم المستمر مدى الحياة.
-        </label>
-      </div>
-      <div class="form-group">
-        <label>
-          <input type="checkbox" name="statement10" value="1"> تقييم المتعلمين في التعليم الإلكتروني يمثل تحديًا.
-        </label>
-      </div>
+  </head>
 
-      <button type="submit">إرسال</button>
-    </form>
-    <div id="thankYouMessage">
-      شكراً لك على المشاركة!
+  <body>
+   
+    <div class="header">
+      <p>برمجة – تصميم – تقارير – بحوث – استبيان – برزنتيشن – وكل ما تبحث عنه</p>
+      <h1>خليل الوحية</h1>
     </div>
-  </div>
 
-<script>
-        document.getElementById('elearningForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // منع الإرسال الافتراضي للنموذج
-            document.getElementById('thankYouMessage').style.display = 'block'; // إظهار رسالة الشكر
-            // يمكنك هنا إضافة كود لإرسال بيانات النموذج إذا لزم الأمر
-            // مثلاً باستخدام fetch API
-        });
-</script>
-</body>
+    <div class="content">
+      <h2>الخدمات المتوفرة</h2>
+      <ul>
+        <li>تطوير مواقع وتطبيقات</li>
+        <li>تصميم عروض تقديمية احترافية</li>
+        <li>إعداد تقارير وبحوث جامعية</li>
+        <li>تصميم استبيانات وتحليلها</li>
+        <li>خدمات حسب الطلب</li>
+      </ul>
+      <button class="btn" onclick="alert('تواصل عبر واتساب: 0967771818420')">اطلب الآن</button>
+    </div>
+
+    <div class="footer">
+      جميع الحقوق محفوظة © 2025
+    </div>
+
+  </body>
 </html>
