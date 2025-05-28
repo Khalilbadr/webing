@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المهندس خليل الوجيه - الملف الشخصي</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            direction: rtl;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #0d47a1;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat span {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .stat p {
+            font-size: 16px;
+        }
+
+        .main-section {
+            background-color: #0d47a1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .service {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service.active {
+            background-color: #e0f7fa;
+        }
+
+        .service p {
+            font-size: 16px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 280px;
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .content-area {
+            margin-right: 280px;
+            min-height: 100vh;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+            transform: translateX(-5px);
+        }
+
+        .nav-item.active {
+            background-color: rgba(255,255,255,0.2);
+            border-right: 4px solid #fff;
+        }
+
+        .section {
+            display: none;
+            padding: 40px;
+            background-color: white;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .skill-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-right: 4px solid #0d47a1;
+        }
+
+        .experience-item {
+            border-right: 4px solid #0d47a1;
+            padding: 20px;
+            margin: 15px 0;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .achievement-card {
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-right: 4px solid #1976d2;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        @media print {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            .content-area {
+                margin-right: 0;
+            }
+            .section {
+                display: block !important;
+                page-break-inside: avoid;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .content-area {
+                margin-right: 0;
+            }
+            .mobile-menu {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1001;
+                background: #0d47a1;
+                color: white;
+                padding: 10px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <!-- Profile Section -->
+        <div class="text-center mb-8">
+            <div class="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center">
+                <i class="fas fa-user text-4xl text-blue-800"></i>
+            </div>
+            <h2 class="text-xl font-bold">المهندس خليل الوجيه</h2>
+            <p class="text-sm opacity-90">مختص نظم المعلومات</p>
+        </div>
+
+        <!-- Navigation -->
+        <nav>
+            <div class="nav-item active" onclick="showSection('home')">
+                <i class="fas fa-home"></i>
+                <span>الصفحة الرئيسية</span>
+            </div>
+            <div class="nav-item" onclick="showSection('experience')">
+                <i class="fas fa-briefcase"></i>
+                <span>الخبرات العملية</span>
+            </div>
+            <div class="nav-item" onclick="showSection('education')">
+                <i class="fas fa-graduation-cap"></i>
+                <span>المؤهلات والدورات</span>
+            </div>
+            <div class="nav-item" onclick="showSection('skills')">
+                <i class="fas fa-cog"></i>
+                <span>المهارات التقنية</span>
+            </div>
+            <div class="nav-item" onclick="showSection('achievements')">
+                <i class="fas fa-trophy"></i>
+                <span>الإنجازات</span>
+            </div>
+            <div class="nav-item" onclick="showSection('contact')">
+                <i class="fas fa-envelope"></i>
+                <span>التواصل</span>
+            </div>
+        </nav>
+
+        <!-- Contact Info -->
+        <div class="mt-8 pt-8 border-t border-white border-opacity-20">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                    <i class="fas fa-phone text-sm"></i>
+                    <span class="text-sm">771818420</span>
+                </div>
+                <div class="flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope text-sm"></i>
+                    <span class="text-sm break-all">khalilawagih@gmail.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+        <!-- Home Section -->
+        <div id="home" class="section active">
+            <div class="profile-card">
+                <h1 class="text-4xl font-bold mb-4">المهندس خليل الوجيه</h1>
+                <p class="text-xl mb-6">مختص نظم المعلومات وإدارة المخازن والحسابات</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="text-3xl font-bold">+10</div>
+                        <div class="text-sm">سنوات خبرة</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-3xl font-bold">15+</div>
+                        <div class="text-sm">مشروع منجز</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-3xl font-bold">8+</div>
+                        <div class="text-sm">لغات برمجة</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-blue-800">
+                    <i class="fas fa-user-circle ml-2"></i>
+                    الملخص الشخصي
+                </h2>
+                <p class="text-lg leading-relaxed text-gray-700">
+                    خبرة طويلة في إدارة المخازن والحسابات ونظم المعلومات، يتمتع بخبرة عملية تزيد عن 10 سنوات بمركز الأطراف الصناعية – تعز. شاركت في تطوير العديد من الأنظمة المحاسبية والمخزنية، وأدرت مشاريع نظم المعلومات والمالية. متمكن من صيانة الشبكات والأنظمة التقنية، وأملك خبرة واسعة في استخدام وتصميم البرمجيات المختلفة لدعم العمليات الإدارية والمحاسبية.
+                </p>
+            </div>
+
+            <div class="services mt-8">
+                <div class="service active">
+                    <i class="fas fa-database text-4xl text-blue-600 mb-3"></i>
+                    <p class="font-semibold">إدارة قواعد البيانات</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-warehouse text-4xl text-blue-600 mb-3"></i>
+                    <p class="font-semibold">إدارة المخازن</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-network-wired text-4xl text-blue-600 mb-3"></i>
+                    <p class="font-semibold">صيانة الشبكات</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-code text-4xl text-blue-600 mb-3"></i>
+                    <p class="font-semibold">تطوير البرمجيات</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div id="experience" class="section">
+            <h2 class="text-3xl font-bold mb-8 text-blue-800">
+                <i class="fas fa-briefcase ml-3"></i>
+                الخبرات العملية
+            </h2>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-bold text-blue-700 mb-2">رئيس قسم المعلومات وإدارة المخازن</h3>
+                <p class="text-gray-600 mb-2">مركز الأطراف الصناعية (الوظيفة الحالية)</p>
+                <p class="text-gray-700">إدارة كاملة لقسم المعلومات والمخازن مع الإشراف على جميع العمليات التقنية والإدارية.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-bold text-blue-700 mb-2">مسؤول نظم المعلومات وإدارة نظام PMS</h3>
+                <p class="text-gray-600 mb-2">مركز الأطراف الصناعية (2014 - حتى الآن)</p>
+                <p class="text-gray-700">تطوير وإدارة نظام إدارة المرضى وقواعد البيانات المتخصصة.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-bold text-blue-700 mb-2">مسؤول الصندوق ومختص الحسابات</h3>
+                <p class="text-gray-600 mb-2">مركز الأطراف الصناعية (01/01/2020 - 01/05/2021)</p>
+                <p class="text-gray-700">إدارة العمليات المالية والمحاسبية مع تطوير الأنظمة المالية.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-bold text-blue-700 mb-2">مسؤول كمبيوتر بإدارة الشؤون المالية</h3>
+                <p class="text-gray-600 mb-2">مكتب الصحة العامة والسكان (2011 - 2014)</p>
+                <p class="text-gray-700">دعم تقني شامل للأنظمة المالية والإدارية.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="text-xl font-bold text-blue-700 mb-2">استشاري نظم معلومات</h3>
+                <p class="text-gray-600 mb-2">الصندوق الاجتماعي للتنمية</p>
+                <p class="text-gray-700">تقديم استشارات تقنية متخصصة في نظم المعلومات.</p>
+            </div>
+
+            <h3 class="text-2xl font-bold mt-8 mb-6 text-blue-800">الخبرات الأخرى</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="skill-item">
+                    <i class="fas fa-hands-helping text-blue-600 ml-2"></i>
+                    <strong>العمل مع المنظمات الدولية:</strong> الإغاثة الإسلامية واليونيسف
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-warehouse text-blue-600 ml-2"></i>
+                    <strong>إدارة المخازن:</strong> خبرة واسعة في إدارة المخازن والحسابات
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-chart-line text-blue-600 ml-2"></i>
+                    <strong>إعداد التقارير:</strong> دراسات وتقارير تطويرية متخصصة
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-network-wired text-blue-600 ml-2"></i>
+                    <strong>الدعم التقني:</strong> صيانة الحواسيب والشبكات
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div id="education" class="section">
+            <h2 class="text-3xl font-bold mb-8 text-blue-800">
+                <i class="fas fa-graduation-cap ml-3"></i>
+                المؤهلات العلمية والدورات التدريبية
+            </h2>
+
+            <div class="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg mb-8">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">المؤهل العلمي</h3>
+                <div class="experience-item">
+                    <h4 class="text-xl font-bold text-blue-700 mb-2">بكالوريوس علوم حاسوب (أنظمة معلومات)</h4>
+                    <p class="text-gray-600 mb-2">جامعة الحديدة - 2005</p>
+                    <p class="text-gray-700">تخصص في أنظمة المعلومات مع التركيز على قواعد البيانات وتطوير الأنظمة.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-6 text-blue-800">الدورات التدريبية</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="achievement-card">
+                    <i class="fas fa-certificate text-blue-600 text-2xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2">دورات تأهيلية متخصصة</h4>
+                    <p class="text-gray-700">دورات متعددة خاصة بمركز الأطراف الصناعية في مجالات إدارة المخازن والأنظمة المحاسبية.</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-language text-blue-600 text-2xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2">دورات اللغة الإنجليزية</h4>
+                    <p class="text-gray-700">دورات إضافية لتطوير مهارات اللغة الإنجليزية في المجال التقني والإداري.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">
+                    <i class="fas fa-globe ml-2"></i>
+                    اللغات
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <span><strong>العربية:</strong> اللغة الأم</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-star text-yellow-500"></i>
+                        <span><strong>الإنجليزية:</strong> قراءة وكتابة بمستوى جيد</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div id="skills" class="section">
+            <h2 class="text-3xl font-bold mb-8 text-blue-800">
+                <i class="fas fa-cog ml-3"></i>
+                المهارات التقنية
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-700">
+                        <i class="fas fa-code ml-2"></i>
+                        لغات البرمجة
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <span class="font-semibold">PHP</span> - تطوير تطبيقات الويب
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">JavaScript</span> - تطوير الواجهات التفاعلية
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">Oracle</span> - إدارة قواعد البيانات المتقدمة
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">Visual Basic</span> - تطبيقات سطح المكتب
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">C, C++</span> - البرمجة النظامية
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">HTML</span> - تطوير صفحات الويب
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-700">
+                        <i class="fas fa-desktop ml-2"></i>
+                        البرامج والتطبيقات
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="skill-item">
+                            <span class="font-semibold">Microsoft Office</span> - إجادة متقدمة
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">Access & Excel</span> - إتقان متخصص
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">Photoshop</span> - تصميم وتحرير الصور
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">AutoCAD</span> - التصميم الهندسي
+                        </div>
+                        <div class="skill-item">
+                            <span class="font-semibold">برامج مكافحة الفيروسات</span> - الأمن السيبراني
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-bold mb-4 text-blue-700">
+                    <i class="fas fa-tools ml-2"></i>
+                    التخصصات التقنية
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="achievement-card">
+                        <i class="fas fa-chart-bar text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">تحليل البيانات</h4>
+                        <p class="text-sm">إعداد وتحليل وأرشفة البيانات الإلكترونية</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-network-wired text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">إدارة الشبكات</h4>
+                        <p class="text-sm">تركيب وصيانة وإدارة الشبكات</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-calculator text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">الأنظمة المحاسبية</h4>
+                        <p class="text-sm">تصميم وإدارة الأنظمة المحاسبية</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-globe text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">تطوير المواقع</h4>
+                        <p class="text-sm">تصميم وتطوير المواقع الإلكترونية</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-shopping-cart text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">إدارة المشتريات</h4>
+                        <p class="text-sm">خبرة في إدارة المشتريات والحسابات</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="fas fa-mobile-alt text-blue-600 text-xl mb-2"></i>
+                        <h4 class="font-bold">تطوير التطبيقات</h4>
+                        <p class="text-sm">مطور تطبيق 'تسبيحاتي'</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">
+                    <i class="fas fa-bolt ml-2"></i>
+                    القدرات المميزة
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <span>القدرة على إعداد وتصميم أنظمة عمل مخصصة لتسهيل الأداء بنسبة تصل إلى 80%</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <span>القدرة على إنجاز الأعمال عبر الإنترنت من أي موقع</span>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                        <span>إمكانية العمل بدوام كامل أو جزئي أو على أساس الإنجاز</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div id="achievements" class="section">
+            <h2 class="text-3xl font-bold mb-8 text-blue-800">
+                <i class="fas fa-trophy ml-3"></i>
+                الإنجازات والمشاريع
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-warehouse text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">تحديث نظام المخازن</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">2022م</p>
+                    <p class="text-gray-700">تحديث شامل لنظام المخازن بمركز الأطراف الصناعية مع تطوير واجهات جديدة وتحسين الأداء.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-cash-register text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">تصميم نظام الصندوق</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">2017 - 2020م</p>
+                    <p class="text-gray-700">تصميم وتطوير نظام الصندوق المالي مع إعداد نظام المخازن والحسابات المتكامل.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-clipboard-list text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">تصميم نظام الجرد</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">مشروع متعدد المؤسسات</p>
+                    <p class="text-gray-700">تطوير نظام الجرد لمركز الأطراف ومكتب الصحة العامة والسكان - تعز.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-heart text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">نظام محاسبي للجمعية الخيرية</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">مشروع تطوعي</p>
+                    <p class="text-gray-700">إعداد نظام محاسبي شامل للجمعية الخيرية للشباب باستخدام Microsoft Access.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-shopping-cart text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">السوق الإلكتروني</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">مشروع تطوير ويب</p>
+                    <p class="text-gray-700">تطوير مشروع السوق الإلكتروني باستخدام لغة PHP مع قاعدة بيانات متقدمة.</p>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i class="fas fa-users text-2xl text-blue-600"></i>
+                        <h3 class="text-lg font-bold">برامج تسويات الموظفين</h3>
+                    </div>
+                    <p class="text-gray-600 mb-2">أنظمة إدارية</p>
+                    <p class="text-gray-700">إعداد برامج تسويات الموظفين والمشاركة في إعداد الموازنة والحسابات الختامية.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
+                <h3 class="text-xl font-bold text-blue-800 mb-4">
+                    <i class="fas fa-hands-helping ml-2"></i>
+                    الأنشطة الاجتماعية
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-hand-holding-heart text-blue-600"></i>
+                        <span>المسؤول المالي بالجمعية الخيرية للشباب في أبعر – صالة – تعز</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-comments text-blue-600"></i>
+                        <span>المشاركة في المنتديات والمواقع العلمية والاجتماعية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="section">
+            <h2 class="text-3xl font-bold mb-8 text-blue-800">
+                <i class="fas fa-envelope ml-3"></i>
+                معلومات التواصل
+            </h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6">بيانات التواصل</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="contact-info">
+                            <i class="fas fa-user text-blue-600"></i>
+                            <div>
+                                <strong>الاسم:</strong>
+                                <span>المهندس خليل الوجيه</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-info">
+                            <i class="fas fa-map-marker-alt text-blue-600"></i>
+                            <div>
+                                <strong>العنوان:</strong>
+                                <span>تعز – اليمن</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-info">
+                            <i class="fas fa-phone text-blue-600"></i>
+                            <div>
+                                <strong>الهاتف الأساسي:</strong>
+                                <span dir="ltr">+967 771 818 420</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-info">
+                            <i class="fas fa-mobile-alt text-blue-600"></i>
+                            <div>
+                                <strong>هاتف إضافي:</strong>
+                                <span dir="ltr">+967 770 928 138</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-info">
+                            <i class="fas fa-envelope text-blue-600"></i>
+                            <div>
+                                <strong>البريد الإلكتروني:</strong>
+                                <span dir="ltr">khalilawagih@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border-2 border-blue-100 p-8 rounded-lg">
+                    <h3 class="text-xl font-bold text-blue-800 mb-6">معلومات إضافية</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">
+                                <i class="fas fa-briefcase text-blue-600 ml-2"></i>
+                                الوضع المهني الحالي
+                            </h4>
+                            <p class="text-gray-700">رئيس قسم المعلومات وإدارة المخازن - مركز الأطراف الصناعية</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">
+                                <i class="fas fa-clock text-blue-600 ml-2"></i>
+                                توافر العمل
+                            </h4>
+                            <p class="text-gray-700">متاح للعمل بدوام كامل أو جزئي أو على أساس الإنجاز</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">
+                                <i class="fas fa-globe text-blue-600 ml-2"></i>
+                                العمل عن بُعد
+                            </h4>
+                            <p class="text-gray-700">إمكانية إنجاز الأعمال عبر الإنترنت من أي موقع</p>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-gray-800 mb-2">
+                                <i class="fas fa-calendar-alt text-blue-600 ml-2"></i>
+                                آخر تحديث
+                            </h4>
+                            <p class="text-gray-700">2/4/2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-800 text-white p-8 rounded-lg text-center">
+                <h3 class="text-2xl font-bold mb-4">هل تحتاج لخدماتي؟</h3>
+                <p class="text-lg mb-6">أتطلع للعمل معك في مشاريع نظم المعلومات وإدارة المخازن والأنظمة المحاسبية</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+967771818420" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition duration-300">
+                        <i class="fas fa-phone ml-2"></i>
+                        اتصل الآن
+                    </a>
+                    <a href="mailto:khalilawagih@gmail.com" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition duration-300">
+                        <i class="fas fa-envelope ml-2"></i>
+                        أرسل رسالة
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            event.target.closest('.nav-item').classList.add('active');
+
+            // Close mobile sidebar
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !mobileMenu.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        });
+
+        // Add hover effects to service items
+        document.querySelectorAll('.service').forEach(service => {
+            service.addEventListener('mouseenter', function() {
+                this.classList.add('active');
+            });
+            
+            service.addEventListener('mouseleave', function() {
+                // Keep only one service active by default
+                document.querySelectorAll('.service').forEach(s => s.classList.remove('active'));
+                document.querySelector('.service').classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for better user experience
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize first service as active
+            document.querySelector('.service').classList.add('active');
+        });
+    </script>
+</body>
+</html>
